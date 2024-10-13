@@ -1,4 +1,3 @@
-
 const sendrequest = document.getElementById("send-request");
 
     sendrequest.addEventListener("click", async () => {
