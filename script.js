@@ -1,23 +1,22 @@
+import config from './config.js';
 const sendrequest = document.getElementById("send-request");
 
+const apiUrl= config.apiUrl;
+
     sendrequest.addEventListener("click", async () => {
-       // fadeFunction();
     const url = document.getElementById('api-url').value;
     const method = document.getElementById('api-method').value;
     const headers = document.getElementById('api-headers').value;
     const body = document.getElementById('api-body').value;
     
-   
-     
-
-
     try {
         //parse header as json
         const headersObj = headers ? JSON.parse(headers) : {};
 
         // Set up the request options
         const options = {
-            method,headers: headersObj};
+            method,
+            headers: headersObj};
 
        // Add the body if it's a POST or PUT request
         if (method === 'POST' || method === 'PUT') {
@@ -27,7 +26,8 @@ const sendrequest = document.getElementById("send-request");
             headersObj['Content-Type'] = 'application/json';
         }
         // Make the API request
-        const response = await fetch(url, options);
+        // const response = await fetch(url, options);
+        const response = await fetch(`${apiUrl}/data`);
 
         // Check if the response is ok (status in the range 200-299)
         if (!response.ok) {
