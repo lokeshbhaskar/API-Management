@@ -1,11 +1,10 @@
 const sendrequest = document.getElementById("send-request");
-
-    sendrequest.addEventListener("click", async () => {
+sendrequest.addEventListener("click", async () => {
     const url = document.getElementById('api-url').value;
     const method = document.getElementById('api-method').value;
     const headers = document.getElementById('api-headers').value;
     const body = document.getElementById('api-body').value;
-    
+
     try {
         //parse header as json
         const headersObj = headers ? JSON.parse(headers) : {};
@@ -13,9 +12,10 @@ const sendrequest = document.getElementById("send-request");
         // Set up the request options
         const options = {
             method,
-            headers: headersObj};
+            headers: headersObj
+        };
 
-       // Add the body if it's a POST or PUT request
+        // Add the body if it's a POST or PUT request
         if (method === 'POST' || method === 'PUT') {
             options.body = body ? JSON.stringify(JSON.parse(body)) : null;
         }
@@ -24,7 +24,7 @@ const sendrequest = document.getElementById("send-request");
         }
         // Make the API request
         const response = await fetch(url, options);
-        
+
 
         // Check if the response is ok (status in the range 200-299)
         if (!response.ok) {
